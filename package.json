@@ -6,7 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "schema-prism": "npx prisma db pull --schema prisma/schema.prisma",
+    "generate-prism": "npx prisma generate --schema prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",

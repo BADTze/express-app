@@ -27,7 +27,7 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const parsed = userSchema.parse(req.body); // ✅ Validasi data masuk
+    const parsed = userSchema.parse(req.body);
 
     const newUser = await prisma.dummyUser.create({
       data: parsed,

@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "../src/generate/prisma"
 }
 
 datasource db {
@@ -8,13 +8,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model DummyUser {
+model dummyUser {
   id      Int     @id @default(autoincrement())
-  nik     String  @unique(map: "nik") @db.VarChar(16)
+  nik     String  @unique(map: "nik") @db.VarChar(10)
   nama    String  @db.VarChar(100)
   email   String  @unique(map: "email") @db.VarChar(100)
   jabatan String? @db.VarChar(50)
 
-  @@map("dummy_user") 
+  @@map("dummy_user")
 }
-

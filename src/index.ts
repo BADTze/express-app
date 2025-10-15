@@ -2,6 +2,8 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.routes";
+import authRoutes from "./routes/auth.routes";
+
 
 dotenv.config();
 
@@ -14,6 +16,8 @@ app.use(express.json());
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("🚀 Express + TypeScript + Prisma + MariaDB backend is running!");
