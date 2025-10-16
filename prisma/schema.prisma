@@ -8,12 +8,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model dummyUser {
-  id      Int     @id @default(autoincrement())
-  nik     String  @unique(map: "nik") @db.VarChar(10)
-  nama    String  @db.VarChar(100)
-  email   String  @unique(map: "email") @db.VarChar(100)
-  jabatan String? @db.VarChar(50)
+model DummyAccount {
+  id         Int        @id @default(autoincrement())
+  user_id    Int
+  email      String     @unique(map: "email") @db.VarChar(100)
+  password   String     @db.VarChar(255)
+  created_at DateTime?  @default(now()) @db.DateTime(0)
+  updated_at DateTime?  @default(now()) @db.DateTime(0)
+  dummy_user DummyUser @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "fk_dummy_user_id")
+
+  @@index([user_id], map: "fk_dummy_user_id")
+  @@map("dummy_account")
+}
+
+model DummyUser {
+  id            Int             @id @default(autoincrement())
+  nik           String          @unique(map: "nik") @db.VarChar(10)
+  nama          String          @db.VarChar(100)
+  email         String          @unique(map: "email") @db.VarChar(100)
+  jabatan       String?         @db.VarChar(50)
+  dummy_account DummyAccount[]
 
   @@map("dummy_user")
 }

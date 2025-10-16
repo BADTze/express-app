@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import prisma from "../config/db";
-import { userSchema } from "../validator/validator";
+import { userSchema } from "../utils/validator";
 import { ZodError } from "zod";
 
 export const getUsers = async (req: Request, res: Response) => {
